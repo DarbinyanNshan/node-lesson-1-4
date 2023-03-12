@@ -1,14 +1,14 @@
 const axios = require('axios');
 const { API_URL } = require('../constants');
 
-exports.getUsers = async (req, res) => {
+exports.getPosts = async (req, res )  =>{
     try{
-        const users = await axios.get(`${API_URL}/users`)
+        const posts = await axios.get(`${API_URL}/posts`)
 
         res.status(200).json({
             success: true,
             status: 200,
-            data: users.data
+            data: posts.data
         })
     } catch (error) {
         res.status(500).json({
@@ -17,19 +17,18 @@ exports.getUsers = async (req, res) => {
             data: null
         })
     }
-   
+
 }
 
-
-exports.getUser = async (req, res) => {
-    const { id } = req.params;
+exports.getPostsUser = async (req, res) =>{
+    const { userId } = req.params;
     try{
-        const user = await axios.get(`${API_URL}/users/${id}`)
-        
+        const posts = await axios.get(`${API_URL}/posts/${userId}`)
+
         res.status(200).json({
             success: true,
             status: 200,
-            data: user.data
+            data: posts.data
         })
     } catch (error) {
         res.status(500).json({
@@ -38,6 +37,4 @@ exports.getUser = async (req, res) => {
             data: null
         })
     }
-
-    req.send('coming soon...')
 }
